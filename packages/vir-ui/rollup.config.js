@@ -18,7 +18,7 @@ export default {
   entry: 'src/index.js',
   dest: 'dist/index.js',
   format: 'umd',
-  moduleName: 'VirUiTab',
+  moduleName: name.replace(/(^|-)(\w)/g, (...args) => args[2].toUpperCase()),
   sourceMap: true,
   external: ['jquery', 'vir'],
   globals: {
@@ -26,7 +26,9 @@ export default {
     vir: 'Vir'
   },
   plugins: [
-    babel()
+    babel({
+      exclude: 'node_modules/**'
+    })
   ],
   banner
 }
